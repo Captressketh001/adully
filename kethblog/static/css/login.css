@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+
+*{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+ body{
+    /* background: linear-gradient(to right, rgba(37, 41, 88, 1) 10%,  #882237 100%);  */
+    background-color: #8080801c;} 
+.navbar-brand {
+    font-size: 30px;
+    color: rgba(37, 41, 88, 1) !important;
+    text-transform: capitalize;
+    font-weight: 700;
+    margin-right: 0px;
+    line-height: 50px;
+    padding: 0px;
+}
+.navbar-brands {
+    font-size: 25px;
+    color: rgba(37, 41, 88, 1) !important; 
+    text-transform: capitalize;
+    font-weight: 600;
+    margin-right: 0px;
+    line-height: 50px;
+    padding: 0px;
+}
+/* .head h1{
+    text-align: center;
+} */
+.navbar-brands span{
+    color: #882237;
+    /* -webkit-text-stroke: 1px rgba(37, 41, 88, 1);
+    -webkit-text-fill-color: #882237; */
+}
+.intro p{
+    color: #882237;
+}
+.login-card{
+   border-radius: 20px 20px 20px 0px;
+}
+.login-card p, h6{
+    font-size: 20px;
+}
+.login-form input, .login-form textarea{
+    font-size: 15px;
+    /* color: #fff; */
+    border: 1px solid #882237 !important;
+    caret-color: #882237;
+}
+.login-form input:focus, .login-form textarea:focus{
+    box-shadow: none !important;
+    border: 0px;
+    /* border-color:  rgba(37, 41, 88, 1)  !important; */
+    background-color: #8080801c;
+    /* border-color: none !important; */
+
+}
+.submit-button{
+    background-color:  rgba(37, 41, 88, 1);
+    color: #fff;
+    height: 45px;
+    border-radius: 12px 12px 12px 0px;
+}
+

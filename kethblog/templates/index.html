@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head%}{% endblock %}
+    <title>Welcome</title>   
+{% block body %}
+    <div class="container" style="color: #fffeee;">
+        <div class="row">
+            <div class="col text-center intro"  style="margin-top: 150px;">
+                 <img src="{{url_for('static', filename='profile_pix/logo.png')}}" alt=""><!-- <i class="fa fa-book fa-2x fa-spin" style="color: #b41212;"></i><i class="fas fa-pen fa-2x fa-spin" style="color:#b41212;"></i> -->
+                <p><a class="navbar-brands">Adu<span>lly</span></a></p>
+               
+                <p>Have the cave of Adullam experience!</p>
+            </div>
+        </div>
+        <div class="row text-center mt-5">
+            <div class="col footer-text mt-5">
+                <div><a href="{{url_for('register')}}" class="btn submit-button form-group form-control">Create Account</a></div>
+                <p><a href="{{url_for('login')}}" class="btn submit-button form-group form-control">Sign In</a></p>
+                
+            </div>
+        </div>
+{% endblock %}

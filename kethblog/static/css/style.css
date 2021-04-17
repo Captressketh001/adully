@@ -1,0 +1,274 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: sans-serif;
+}
+nav{
+    background: #222;
+    padding: 5px 20px;
+    width: 100%;
+}
+ul{
+    list-style: none;
+
+}
+a{
+    color: #fff;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+.menu li{
+    font-size: 16px;
+    padding: 15px 5px;
+
+}
+.menu li a{
+    display: block;
+}
+.logo a{
+    font-size: 20px;
+}
+.button.secondary{
+    border-bottom: 1px solid #444;
+}
+
+/* Mobile menu */
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.toggle{
+    order: 1;
+}
+.item.button{
+    order: 2;
+}
+.item{
+    width: 100%;
+    text-align: center;
+    order: 3;
+    display: none;
+}
+.item.active{
+    display: block;
+}
+
+
+.toggle{
+    cursor: pointer;
+}
+.bars{
+    background: #999;
+    display: inline-block;
+    height: 2px;
+    position: relative;
+    width: 18px;
+}
+.bars::before,.bars::after{
+    background: #999;
+    content: "";
+    display: inline-block;
+    height: 2px;
+    position: absolute;
+    width: 18px;
+}
+.bars::before{
+    top: 5px;
+}
+.bars::after{
+    top: -5px;
+}
+
+/* Tablet menu */
+@media all and (min-width:468px){
+    .menu{
+        justify-content: center;
+    }
+    .logo{
+        flex: 1;
+    }
+    .item.button{
+        width: auto;
+        order: 1;
+        display: block;
+    }
+    .toggle{
+        order: 2;
+    }
+    .button.secondary{
+        border: 0;
+    }
+    .button a{
+        text-decoration: none;
+        padding: 7px 15px;
+        background: teal;
+        border: 1px solid #006d6d;
+        border-radius: 50em;
+    }
+    .button.secondary a{
+        background: transparent;
+    }
+    .button a:hover{
+        transition: all .25s;
+    }
+    button:not(.secondary) a:hover{
+        background: #006d6d;
+        border-color: #005959;
+    }
+    .button.secondary a:hover{
+        color: #ddd;
+    }
+}
+
+/* Deskstop menu */
+@media all and (min-width:768px){
+    .item{
+        display: block;
+        width: auto;
+    }
+    .toggle{
+        display: none;
+    }
+    .logo{
+        order: 0;
+    }
+    .item{
+        order: 0;
+    }
+    .button{
+        order: 2;
+    }
+    .menu li{
+        padding: 15px 10px;
+    }
+    .menu li.button{
+        padding-right: 0 ;
+    }
+}
+.post-section{
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;
+    flex-wrap: wrap;
+    padding: 1em 4em;
+    /* text-align: center; */
+}
+.update-section{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    flex-wrap: wrap;
+    padding: 1em 4em;
+}
+.post-section > div{
+    background-color: #fff;
+    width: 75%;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+}
+.post-section > div > i{
+    align-self: center;
+}
+.post-section > div > p{
+    padding-top: 18px;
+}
+@media all and (max-width:768px){
+    .post-section{
+        padding: 1em 1em;
+    }
+    .post-section > div{
+        width: 75%;
+    }
+}
+@media all and (max-width:468px){
+    .post-section{
+        padding: 1em 1em;
+    }
+    .post-section > div{
+        width: 100%;
+    }
+}
+
+.user{
+    display: flex;
+    flex-direction: row;
+}
+.user img{
+    border-radius: 50%;
+    width: 18%;
+    height: 40px;
+    align-self: center;
+    /* justify-items:right; */
+}
+.user p{
+    padding-left: 15px;
+}
+.user p small{
+    display: block;
+}
+.post{
+    display: flex;
+    flex-direction: column;
+}
+.post h4 a{
+    color: #000;
+}
+.reactions{
+    display: flex;
+}
+.profile{
+    justify-content: center;
+}
+.profile-section{
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    padding: 1em 4em;
+    justify-content: center;
+    /* text-align: center; */
+    
+}
+.profile-section > .profile_pix{
+    background: red;
+    width: 8%;
+    border: 1px solid black;
+    height: 70px;
+    flex-direction: column;
+    
+}
+
+.profile-section > .profile_pix img{
+    width: 100%;
+    height: 100%;
+}
+@media all and (max-width:768px){
+    .profile-section{
+        padding: 1em 1em;
+    }
+    .profile-section > .profile_pix{
+        width: 15%;
+    }
+}
+@media all and (max-width:468px){
+    .profile-section{
+        padding: 1em 1em;
+    }
+    .profile-section > .profile_pix{
+        width: 30%;
+    }
+}
+
+.profile-section .profile_info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

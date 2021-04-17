@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+
+*{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.fa, .fas{
+    padding-right: 17px;
+    position: relative;
+    top: -50px;
+    color: #563d7c;
+}
+.contents{
+    border-bottom: 1px solid #ffc107;;
+    margin-top: 10px;
+    background-color: #fff;
+    color: #000;
+}
+.submit-button{
+    background-color:  #563d7c;
+    color: #fff;
+    height: 45px;
+    border-radius: 12px 12px 12px 0px;
+}
+p{
+    font-size: 20px;
+}

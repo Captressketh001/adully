@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Blog details</title>
+{% endblock %}
+{% block body %}
+    <nav>
+      <ul class="menu">
+          <li class="logo"><a href="/home"> <img src="{{url_for('static', filename='profile_pix/logo-2.png')}}" alt="" class="pr-2" >Adully</a></li>
+          <li class="item"><a href="{{url_for('home')}}">Home</a></li>
+          {% if current_user.is_authenticated %}
+          <li class="item"><a href="{{url_for('new_post')}}"><i class="fa fa-plus-circle pr-1"></i> Write</a></li>
+          <li class="item"><a href="{{url_for('account')}}">Account</a></li>
+          <li class="item"><a href="{{url_for('logout')}}">Logout</a></li>
+          {% else %}
+          <li class="item button"><a href="#">Login</a></li>
+          <li class="item button secondary"><a href="#">Sign Up</a></li>
+          {% endif  %}
+          <li class="toggle"><span class="bars"></span></li>
+      </ul>
+    </nav>
+    <main>
+        {% with messages = get_flashed_messages(with_categories='true') %}
+        {% if messages %}
+        {% for category, message in messages%}
+            <div class="alert alert-dismissible alert-{{ category }} ">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+        <div class="post-section">
+          <div>
+            <i class="fa fa-user-circle pr-2 fa-2x"></i>
+            <p>{{ user }}</p>
+          </div>
+          <div>
+            <a href="{{url_for('new_post')}}" class="btn btn-danger btn-lg" style="width: 100%;"><i class="fa fa-plus-circle pr-1"></i>Write an Article...</a>
+          </div>
+        </div>
+        {% for post in posts %}
+        <div class="post-section">
+          <div class="user">
+            <img src="{{url_for('static', filename='profile_pix/' + post.author.image_file)}}" alt="">
+            <p>{{post.author.username}}<small>{{post.date_posted.strftime('%Y-%m-%d')}}</small></p>
+          </div>
+          <div class="post">
+            <h4><a href="{{ url_for('post', post_id=post.id) }}">{{post.title}}</a></h4>
+            <p>{{post.content}}</p>
+          </div>
+          
+            <div class="reactions">
+             <i class="fa fa-thumbs-up pr-2"></i> <small>20</small>
+            </div>
+        </div>
+        {% endfor %}  
+    </main>
+{% endblock %}

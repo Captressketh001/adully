@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block body %}
+<nav>
+    <ul class="menu">
+        <li class="logo"><a href="/home">Adully</a></li>
+        <li class="item"><a href="{{url_for('home')}}">Home</a></li>
+        {% if current_user.is_authenticated %}
+        <li class="item"><a href="{{url_for('new_post')}}">New Post</a></li>
+        <li class="item"><a href="{{url_for('account')}}">Account</a></li>
+        <li class="item"><a href="{{url_for('logout')}}">Logout</a></li>
+        {% else %}
+        <li class="item button"><a href="#">Login</a></li>
+        <li class="item button secondary"><a href="#">Sign Up</a></li>
+        {% endif  %}
+        <li class="toggle"><span class="bars"></span></li>
+       
+    </ul>
+  </nav>
+{% with messages = get_flashed_messages(with_categories='true') %}
+        {% if messages %}
+        {% for category, message in messages%}
+            <div class="alert alert-dismissible alert-{{ category }} ">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form action="" method="POST">
+                    {{ form.hidden_tag() }}
+                    <fieldset class="formgroup">
+                        <legend class="mb-4 text-center pt-2">
+                            {{ legend }}
+                        </legend>
+                        <div class="form-group">
+                            {{ form.title.label(class="form-control-label") }}
+                            {% if form.title.errors %}
+                                {{ form.title(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.title.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %} 
+                                {{ form.title(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.content.label(class="form-control-label") }}
+                            {% if form.content.errors %}
+                                {{ form.content(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.content.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %} 
+                                {{ form.content(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-info") }}
+                        </div>
+    
+                    </fieldset>
+                </form>
+            </div>
+    </div>
+{% endblock %}
