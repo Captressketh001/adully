@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+{% with messages = get_flashed_messages(with_categories='true') %}
+        {% if messages %}
+        {% for category, message in messages%}
+            <div class="alert alert-dismissible alert-{{ category }} ">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form action="" method="POST">
+                    {{ form.hidden_tag() }}
+                    <fieldset class="formgroup">
+                        <legend class="mb-4 pt-2 text-center">
+                            Reset Password
+                        </legend>
+                        <div class="form-group">
+                            {{ form.email.label(class="form-control-label") }}
+                            {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %} 
+                                {{ form.email(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group mt-2">
+                            {{ form.submit(class="btn submit-button") }}
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

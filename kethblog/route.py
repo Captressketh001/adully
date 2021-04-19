@@ -3,7 +3,7 @@ import secrets
 from PIL import Image
 from flask import render_template, url_for,request, redirect, flash, request, abort
 from kethblog import app, db , bcrypt
-from kethblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
+from kethblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm
 from kethblog.model import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -59,7 +59,7 @@ def save_picture(form_picture):
     picture_path = os.path.join(app.root_path, 'static/profile_pix', picture_fn)
     
     # code to resize images before they are uploaded
-    output_size = (800,800)
+    output_size = (125,125)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)
@@ -130,3 +130,27 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your Post has been deleted!', 'success')
     return redirect(url_for('home'))
+
+# @app.route("/user/<str:username>")
+# def user_posts(username):
+#     page = request.args.get('page', 1, type=int)
+#     user = User.query.filter_by(username=username).first_or_404()
+#     posts = Post.query.filter_by(Post.date_posted.desc())\
+#         .paginate(page=page, per_page=5)
+#     return render_template('user_posts.html', posts=posts, user=user)
+
+@app.route("/reset_password", methods=['POST', 'GET'])
+def reset_request():
+     if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = RequestResetForm()
+    return render_template('reset_request.html', title='Reset Password', form=form )
+
+@app.route("/reset_password/<token>", methods=['POST', 'GET'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash("Invalid or expire token", 'warning')
+        return redirect(url_for(""))

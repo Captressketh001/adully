@@ -204,10 +204,21 @@ a:hover{
 }
 .user img{
     border-radius: 50%;
-    width: 18%;
+    width: 15%;
     height: 40px;
     align-self: center;
     /* justify-items:right; */
+}
+
+@media all and (max-width:468px){
+    .user img{
+        width: 12%;
+    }
+}
+@media all and (min-width:768px){
+    .user img{
+        width: 10%;
+    }
 }
 .user p{
     padding-left: 15px;
