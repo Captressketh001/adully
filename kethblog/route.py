@@ -15,7 +15,7 @@ def index():
 @login_required
 def home():
     user = current_user.username
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.date_posted.desc()).all()
     return render_template('home.html', posts=posts, user=user)
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -131,26 +131,25 @@ def delete_post(post_id):
     flash('Your Post has been deleted!', 'success')
     return redirect(url_for('home'))
 
-# @app.route("/user/<str:username>")
-# def user_posts(username):
-#     page = request.args.get('page', 1, type=int)
-#     user = User.query.filter_by(username=username).first_or_404()
-#     posts = Post.query.filter_by(Post.date_posted.desc())\
-#         .paginate(page=page, per_page=5)
-#     return render_template('user_posts.html', posts=posts, user=user)
+@app.route("/user/<string:username>")
+def user_posts(username):
+    # page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc())
+    return render_template('user_posts.html', posts=posts, user=user)
+# 
+# @app.route("/reset_password", methods=['POST', 'GET'])
+# def reset_request():
+#      if current_user.is_authenticated:
+#         return redirect(url_for('home'))
+#     form = RequestResetForm()
+#     return render_template('reset_request.html', title='Reset Password', form=form )
 
-@app.route("/reset_password", methods=['POST', 'GET'])
-def reset_request():
-     if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    form = RequestResetForm()
-    return render_template('reset_request.html', title='Reset Password', form=form )
-
-@app.route("/reset_password/<token>", methods=['POST', 'GET'])
-def reset_token(token):
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    user = User.verify_reset_token(token)
-    if user is None:
-        flash("Invalid or expire token", 'warning')
-        return redirect(url_for(""))
+# @app.route("/reset_password/<token>", methods=['POST', 'GET'])
+# def reset_token(token):
+#     if current_user.is_authenticated:
+#         return redirect(url_for('home'))
+#     user = User.verify_reset_token(token)
+#     if user is None:
+#         flash("Invalid or expired token", 'warning')
+#         return redirect(url_for("reset_request"))

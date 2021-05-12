@@ -44,7 +44,7 @@
         <div class="post-section">
           <div class="user profile_pix">
             <img src="{{url_for('static', filename='profile_pix/' + post.author.image_file)}}" alt="">
-            <p>{{post.author.username}}<small>{{post.date_posted.strftime('%Y-%m-%d')}}</small></p>
+            <p><a href="{{url_for('user_posts', username=post.author.username)}}" style="color: black;">{{post.author.username}}</a><small>{{post.date_posted.strftime('%Y-%m-%d')}}</small></p>
           </div>
           <div class="post">
             <h4><a href="{{ url_for('post', post_id=post.id) }}">{{post.title}}</a></h4>

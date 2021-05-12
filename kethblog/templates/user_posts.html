@@ -31,11 +31,11 @@
         {% endfor %}
         {% endif %}
     {% endwith %}
-    <h4>Posts by {{ user.username }} (({{ posts.total  }})</h4>
+    <h4>Posts by {{ user.username }}</h4>
         <div class="post-section">
           <div>
             <i class="fa fa-user-circle pr-2 fa-2x"></i>
-            <p>{{ user }}</p>
+            <p>{{ user.username }}</p>
           </div>
           <div>
             <a href="{{url_for('new_post')}}" class="btn btn-danger btn-lg" style="width: 100%;"><i class="fa fa-plus-circle pr-1"></i>Write an Article...</a>
@@ -45,7 +45,7 @@
         <div class="post-section">
           <div class="user profile_pix">
             <img src="{{url_for('static', filename='profile_pix/' + post.author.image_file)}}" alt="">
-            <p>{{post.author.username}}<small>{{post.date_posted.strftime('%Y-%m-%d')}}</small></p>
+          <p><a href="{{url_for('user_posts', username=post.author.username)}}" style="color: black;">{{post.author.username}}</a><small>{{post.date_posted.strftime('%Y-%m-%d')}}</small></p>
           </div>
           <div class="post">
             <h4><a href="{{ url_for('post', post_id=post.id) }}">{{post.title}}</a></h4>
